@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Report Book</string>
+    <string name="ok">OK</string>
+    <string name="okay">okey</string>
+    <string name="error_network">Network not found</string>
+    <string name="download_failed">Download Failed</string>
+
+    <string name="srno">SrNo</string>
+    <string name="docsrchcode">DOCSRCHCODE</string>
+    <string name="doctype">DOCTYPE</string>
+    <string name="docnumber">DOCNUMBER</string>
+    <string name="docdate">DOCDATE</string>
+    <string name="project">PROJECT</string>
+    <string name="docvalue">DOCVALUE</string>
+    <string name="btnview">VIEW DOCUMENT</string>
+    <string name="btnapprove">BTNAPPROVE</string>
+    <string name="btnreject">BTNREJECT</string>
+    <string name="reject">Reject</string>
+    <string name="approve">Approve</string>
+
+
+    <string name="addSpec">Addition Specification</string>
+    <string name="description">Description</string>
+    <string name="quantity">Quantity</string>
+
+    <string name="uom">UOM</string>
+
+    <string name="reqesitionID">Reqesition Id</string>
+    <string name="reqNumber">reqNumber Id</string>
+    <string name="reqDate">reqDate</string>
+    <string name="pAprojid">pAprojid</string>
+    <string name="paprojname">paprojname</string>
+    <string name="deliveryAddress">deliveryAddress</string>
+    <string name="contactPerson">contactPerson</string>
+    <string name="contactNumber">contactNumber</string>
+    <string name="lastModifiedBy">lastModifiedBy</string>
+    <string name="send">send</string>
+    <string name="approved">approved</string>
+    <string name="approvedBy">approvedBy</string>
+    <string name="approvalComments">approvalComments</string>
+    <string name="slNo">slNo</string>
+    <string name="materialCode">materialCode</string>
+    <string name="materialName">materialName</string>
+    <string name="brand">brand</string>
+    <string name="consltapproval">consltapproval</string>
+    <string name="costCode">costCode</string>
+    <string name="requiredDate">requiredDate</string>
+    <string name="remarks">remarks</string>
+    <string name="deliveryRemarks">deliveryRemarks</string>
+    <string name="boqReference">boqReference</string>
+    <string name="revised">revised</string>
+    <string name="revision">revision</string>
+    <string name="revisionDate">revisionDate</string>
+    <string name="sendBy">sendBy</string>
+    <string name="readyForPO">readyForPO</string>
+    <string name="purchaseOfficer">purchaseOfficer</string>
+    <string name="poqtystatus">poqtystatus</string>
+    <string name="cancelQuantity">cancelQuantity</string>
+    <string name="cancelComments">cancelComments</string>
+    <string name="createdBy">createdBy</string>
+    <string name="createdOn">createdOn</string>
+    <string name="mrStatus">mrStatus</string>
+    <string name="approvedDate">approvedDate</string>
+</resources>

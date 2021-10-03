@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ouvrirdeveloper.domain.models.RequisitionDetail" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_20"
+            android:elevation="@dimen/dp_8"
+            app:cardBackgroundColor="@color/grey_200"
+            card_view:cardCornerRadius="@dimen/dp_8"
+            card_view:cardUseCompatPadding="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10">
+
+
+                <include
+                    android:id="@+id/layoutslNo"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{String.valueOf(item.slNo)}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setVisibility="@{item.slNo}"
+                    app:title="@{@string/slNo}" />
+
+
+                <include
+                    android:id="@+id/layoutmaterialCode"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.materialCode}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutslNo"
+                    app:setVisibility="@{item.materialCode}"
+                    app:title="@{@string/materialCode}" />
+
+                <include
+                    android:id="@+id/layoutmaterialName"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.materialName}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutmaterialCode"
+                    app:setVisibility="@{item.materialName}"
+                    app:title="@{@string/materialName}" />
+
+                <include
+                    android:id="@+id/layoutbrand"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.brand}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutmaterialName"
+                    app:setVisibility="@{item.brand}"
+                    app:title="@{@string/brand}" />
+
+                <include
+                    android:id="@+id/layoutconsltapproval"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.consltapproval}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutbrand"
+                    app:setVisibility="@{item.consltapproval}"
+                    app:title="@{@string/consltapproval}" />
+
+                <include
+                    android:id="@+id/layoutcostCode"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.costCode}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutconsltapproval"
+                    app:setVisibility="@{item.costCode}"
+                    app:title="@{@string/costCode}" />
+
+                <include
+                    android:id="@+id/layoutuom"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.uom}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutcostCode"
+                    app:setVisibility="@{item.uom}"
+                    app:title="@{@string/uom}" />
+
+                <include
+                    android:id="@+id/layoutquantity"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{String.valueOf(item.quantity)}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutuom"
+                    app:setVisibility="@{item.quantity}"
+                    app:title="@{@string/quantity}" />
+
+                <include
+                    android:id="@+id/layoutrequiredDate"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.requiredDate}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutquantity"
+                    app:setVisibility="@{item.requiredDate}"
+                    app:title="@{@string/requiredDate}" />
+
+                <include
+                    android:id="@+id/layoutremarks"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.remarks}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutrequiredDate"
+                    app:setVisibility="@{item.remarks}"
+                    app:title="@{@string/remarks}" />
+
+                <include
+                    android:id="@+id/layoutdeliveryRemarks"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.deliveryRemarks}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutremarks"
+                    app:setVisibility="@{item.deliveryRemarks}"
+                    app:title="@{@string/deliveryRemarks}" />
+
+                <include
+                    android:id="@+id/layoutboqReference"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.boqReference}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutdeliveryRemarks"
+                    app:setVisibility="@{item.boqReference}"
+                    app:title="@{@string/boqReference}" />
+
+                <include
+                    android:id="@+id/layoutrevised"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{String.valueOf(item.revised)}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutboqReference"
+                    app:setVisibility="@{item.revised}"
+                    app:title="@{@string/revised}" />
+
+
+                <include
+                    android:id="@+id/layoutsendBy"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.sendBy}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutrevised"
+                    app:setVisibility="@{item.sendBy}"
+                    app:title="@{@string/sendBy}" />
+
+                <include
+                    android:id="@+id/layoutreadyForPO"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.readyForPO}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutsendBy"
+                    app:setVisibility="@{item.readyForPO}"
+                    app:title="@{@string/readyForPO}" />
+
+
+                <include
+                    android:id="@+id/layoutpurchaseOfficer"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.purchaseOfficer}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutreadyForPO"
+                    app:setVisibility="@{item.purchaseOfficer}"
+                    app:title="@{@string/purchaseOfficer}" />
+
+
+                <include
+                    android:id="@+id/layoutpoqtystatus"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{String.valueOf(item.poqtystatus)}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutpurchaseOfficer"
+                    app:setVisibility="@{item.poqtystatus}"
+                    app:title="@{@string/poqtystatus}" />
+
+
+                <include
+                    android:id="@+id/layoutcancelQuantity"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{String.valueOf(item.cancelQuantity)}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutpoqtystatus"
+                    app:setVisibility="@{item.cancelQuantity}"
+                    app:title="@{@string/cancelQuantity}" />
+
+
+                <include
+                    android:id="@+id/layoutcancelComments"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.cancelComments}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutcancelQuantity"
+                    app:setVisibility="@{item.cancelComments}"
+                    app:title="@{@string/cancelComments}" />
+
+
+                <include
+                    android:id="@+id/layoutcreatedBy"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.createdBy}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutcancelComments"
+                    app:setVisibility="@{item.createdBy}"
+                    app:title="@{@string/createdBy}" />
+
+
+                <include
+                    android:id="@+id/layoutcreatedOn"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.createdOn}"
+                    app:isShowDivider="@{true}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutcreatedBy"
+                    app:setVisibility="@{item.createdOn}"
+                    app:title="@{@string/createdOn}" />
+
+
+                <include
+                    android:id="@+id/layoutapprovedDate"
+                    layout="@layout/partial_item_requisition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:AValue="@{item.approvedDate}"
+                    app:isShowDivider="@{false}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutcreatedOn"
+                    app:setVisibility="@{item.approvedDate}"
+                    app:title="@{@string/approvedDate}" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</layout>

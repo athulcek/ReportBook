@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">BaseArc</string>
+    <string name="ok">OK</string>
+    <string name="okay">okey</string>
+    <string name="error_network">Network not found</string>
+
+
+    <string name="loading_please_wait">Loading, please wait…</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet_connection">Could not connect to the network. Please check your Internet connection.</string>
+    <string name="something_went_wrong">Something went wrong. Please try again later.</string>
+
+    <string name="signing_in_progress">Signing in, please wait…</string>
+    <string name="fetching_pending_tasks">Fetching Pending Tasks, please wait…</string>
+    <string name="invalid_credentials">Invalid Credentials.</string>
+    <string name="userId_required_error">UserId required.</string>
+    <string name="enter_password">Enter password.</string>
+    <string name="email_already_exists">This userId has already been used. Please use another.</string>
+    <string name="field_empty_error">Field can\'t be empty</string>
+    <string name="invalid_userId_error">Enter a valid User ID.</string>
+    <string name="password_required_error">Password required.</string>
+    <string name="sign_in_userId_hint">User Id</string>
+    <string name="sign_in_password_hint">Password</string>
+    <string name="sign_in_companyId_hint">Company ID</string>
+    <string name="sign_in_keep_me_text">Keep me logged in</string>
+    <string name="sign_in_forgot_password_text">Forgot Password?</string>
+    <string name="sign_in_sign_up_text">Sign Up</string>
+    <string name="sign_in_dont_have_account_text">Don\'t have an account?</string>
+    <string name="sign_up_title">Create an account to restore your games in any device.</string>
+    <string name="land_sign_in">Sign In</string>
+
+
+    <string name="not_implemented">Not implemented</string>
+</resources>

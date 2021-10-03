@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ouvrirdeveloper.domain.models.RequisitionDetail" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginVertical="@dimen/dp_20"
+        android:elevation="@dimen/dp_8"
+        app:cardBackgroundColor="@color/grey_200"
+        card_view:cardCornerRadius="@dimen/dp_8"
+        card_view:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_5"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10">
+
+
+            <include
+                android:id="@+id/layoutQuantity"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{String.valueOf(item.quantity)}"
+                app:isShowDivider="@{true}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/layoutMaterialCode"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent=".3"
+                app:title="@{@string/quantity}" />
+
+            <include
+                android:id="@+id/layoutMaterialCode"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{item.materialCode}"
+                app:isShowDivider="@{true}"
+                app:layout_constraintBottom_toBottomOf="@+id/layoutQuantity"
+                app:layout_constraintEnd_toStartOf="@+id/layoutQuantity"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent=".7"
+                app:title="@{@string/materialCode}" />
+
+            <include
+                android:id="@+id/layoutDescription"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{item.materialName}"
+                app:isShowDivider="@{true}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutMaterialCode"
+                app:title="@{@string/materialName}" />
+
+            <include
+                android:id="@+id/layoutAddSpec"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{item.remarks}"
+                app:isShowDivider="@{true}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutDescription"
+                app:setVisibility="@{item.remarks}"
+                app:title="@{@string/remarks}" />
+
+            <include
+                android:id="@+id/layoutUom"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{item.uom}"
+                app:isShowDivider="@{false}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutAddSpec"
+                app:setVisibility="@{item.uom}"
+                app:title="@{@string/uom}" />
+
+            <include
+                android:id="@+id/layoutMRstatus"
+                layout="@layout/partial_item_requisition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:AValue="@{item.mrStatus}"
+                app:isShowDivider="@{false}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutUom"
+                app:setVisibility="@{item.mrStatus}"
+                app:title="@{@string/mrStatus}" />
+
+            <View
+                android:id="@+id/view_click"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

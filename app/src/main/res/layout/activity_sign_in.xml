@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ouvrirdeveloper.reportbook.features.signin.SignInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sign_in_logo_container_height"
+            android:background="@color/orange"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_app"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_background"
+            tools:ignore="ContentDescription" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.ouvrirdeveloper.core.ui.AppTextInputLayout
+                    android:id="@+id/til_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_24"
+                    android:layout_marginTop="@dimen/margin_30"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/sign_in_email"
+                        style="?attr/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:hint="@string/sign_in_userId_hint"
+                        android:inputType="text"
+                        android:maxLength="200"
+                        android:text="@={viewModel.userId}" />
+                </com.ouvrirdeveloper.core.ui.AppTextInputLayout>
+
+                <com.ouvrirdeveloper.core.ui.AppTextInputLayout
+                    android:id="@+id/til_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_24"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@+id/til_email"
+                    app:layout_constraintStart_toStartOf="@+id/til_email"
+                    app:layout_constraintTop_toBottomOf="@+id/til_email"
+                    app:passwordToggleDrawable="@drawable/password_visibility_toggle"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@null">
+
+                    <EditText
+                        android:id="@+id/sign_in_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sign_in_password_hint"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:maxLength="20"
+                        android:text="@={viewModel.password}" />
+
+                </com.ouvrirdeveloper.core.ui.AppTextInputLayout>
+
+                <com.ouvrirdeveloper.core.ui.AppTextInputLayout
+                    android:id="@+id/til_companyId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_24"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@+id/til_email"
+                    app:layout_constraintStart_toStartOf="@+id/til_email"
+                    app:layout_constraintTop_toBottomOf="@+id/til_password"
+                    app:passwordToggleDrawable="@drawable/password_visibility_toggle"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@null">
+
+
+                    <EditText
+                        android:id="@+id/sign_in_companyId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sign_in_companyId_hint"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:text="@={viewModel.companyId}" />
+                </com.ouvrirdeveloper.core.ui.AppTextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/sign_in_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/sign_in_custom_checkbox"
+                    android:checked="@={viewModel.isKeepMeLoggedIn}"
+                    android:paddingStart="6dp"
+                    android:text="@string/sign_in_keep_me_text"
+                    android:textSize="@dimen/font_normal_size_16"
+                    app:layout_constraintStart_toStartOf="@+id/til_email"
+                    app:layout_constraintTop_toBottomOf="@+id/til_companyId"
+                    tools:ignore="RtlSymmetry" />
+
+
+                <Button
+                    android:id="@+id/button_sign_in"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_40"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:background="@color/orange"
+                    android:gravity="center"
+                    android:onClick="@{()-> viewModel.doLogIn()}"
+                    android:text="@string/land_sign_in"
+                    app:layout_constraintEnd_toEndOf="@+id/til_email"
+                    app:layout_constraintStart_toStartOf="@+id/til_email"
+                    app:layout_constraintTop_toBottomOf="@+id/sign_in_check_box" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/progressIndicator"
+            layout="@layout/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

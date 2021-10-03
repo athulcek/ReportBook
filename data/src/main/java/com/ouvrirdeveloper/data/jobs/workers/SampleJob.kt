@@ -1,4 +1,4 @@
-package com.bushnell.golf.data.jobs.workers
+package com.ouvrirdeveloper.data.jobs.workers
 
 import android.content.Context
 import androidx.work.CoroutineWorker

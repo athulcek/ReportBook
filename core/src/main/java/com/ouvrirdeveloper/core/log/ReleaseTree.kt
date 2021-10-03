@@ -1,4 +1,4 @@
-package com.bushnell.golf.helpers.log
+package com.ouvrirdeveloper.core.log
 
 import timber.log.Timber
 

@@ -15,7 +15,7 @@ import javax.crypto.spec.GCMParameterSpec
 class KeystoreHelper {
     private val androidKeyStore = "AndroidKeyStore"
     private val aesMode = "AES/GCM/NoPadding"
-    private val keyAlias = "Bushnell"
+    private val keyAlias = "AppName"
 
     private var keyStore: KeyStore? = null
 

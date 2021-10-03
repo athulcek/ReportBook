@@ -1,6 +1,6 @@
 package com.ouvrirdeveloper.data.datasource
 
-import com.bushnell.golf.data.database.dao.PendingTaskDao
+import com.ouvrirdeveloper.data.database.dao.PendingTaskDao
 import com.ouvrirdeveloper.core.model.BaseResponse
 import com.ouvrirdeveloper.data.api.UserApiService
 import com.ouvrirdeveloper.data.models.entities.PendingTaskEntity

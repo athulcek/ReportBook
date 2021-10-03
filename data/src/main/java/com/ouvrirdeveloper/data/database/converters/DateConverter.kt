@@ -1,4 +1,4 @@
-package com.bushnell.golf.data.database.converters
+package com.ouvrirdeveloper.data.database.converters
 
 import androidx.room.TypeConverter
 import java.util.*

@@ -1,4 +1,4 @@
-package com.bushnell.golf.ui.base
+package com.ouvrirdeveloper.core.ui
 
 import android.graphics.drawable.Drawable
 import androidx.fragment.app.Fragment

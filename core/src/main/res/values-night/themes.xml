@@ -68,7 +68,7 @@
         <item name="navigationViewStyle">@style/Widget.MyTheme.NavigationView</item>
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
 
-        <item name="android:editTextStyle">@style/BushnellEditTextStyle</item>
+        <item name="android:editTextStyle">@style/AppEditTextStyle</item>
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">

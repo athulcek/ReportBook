@@ -2,7 +2,7 @@ package com.ouvrirdeveloper.data.jobs
 
 import android.content.Context
 import androidx.work.*
-import com.bushnell.golf.data.jobs.workers.SampleJob
+import com.ouvrirdeveloper.data.jobs.workers.SampleJob
 import org.koin.core.component.KoinApiExtension
 import java.util.concurrent.TimeUnit
 

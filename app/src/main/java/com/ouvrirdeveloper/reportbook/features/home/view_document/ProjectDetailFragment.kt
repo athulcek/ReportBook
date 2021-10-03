@@ -3,7 +3,7 @@ package com.ouvrirdeveloper.reportbook.features.home.view_document
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import com.bushnell.golf.ui.base.BaseFragmentWithBinding
+import com.ouvrirdeveloper.core.ui.BaseFragmentWithBinding
 import com.ouvrirdeveloper.basearc.R
 import com.ouvrirdeveloper.basearc.databinding.FragmentProjectDetailBinding
 import com.ouvrirdeveloper.domain.helpers.extensions.deserialize

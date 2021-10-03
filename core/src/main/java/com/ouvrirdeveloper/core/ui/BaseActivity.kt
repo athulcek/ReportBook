@@ -11,7 +11,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.bushnell.golf.ui.base.BaseFragment
+import com.ouvrirdeveloper.core.ui.BaseFragment
 import com.ouvrirdeveloper.basearc.core.extension.showAlertDialog
 import com.ouvrirdeveloper.basearc.helper.network.base.ConnectivityProvider
 import com.ouvrirdeveloper.core.R

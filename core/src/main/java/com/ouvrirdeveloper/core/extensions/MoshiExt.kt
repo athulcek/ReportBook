@@ -1,6 +1,6 @@
 package com.ouvrirdeveloper.core.extensions
 
-import com.bushnell.golf.data.adapters.EnumTypeJsonAdapter
+import com.ouvrirdeveloper.core.adapters.EnumTypeJsonAdapter
 import com.ouvrirdeveloper.domain.ITypeEnum
 import com.squareup.moshi.Moshi
 import kotlin.reflect.KClass

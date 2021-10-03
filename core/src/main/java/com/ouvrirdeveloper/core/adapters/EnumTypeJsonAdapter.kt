@@ -1,4 +1,4 @@
-package com.bushnell.golf.data.adapters
+package com.ouvrirdeveloper.core.adapters
 
 import com.ouvrirdeveloper.domain.ITypeEnum
 import com.squareup.moshi.JsonAdapter

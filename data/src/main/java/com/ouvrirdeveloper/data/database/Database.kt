@@ -1,10 +1,10 @@
-package com.bushnell.golf.data.database
+package com.ouvrirdeveloper.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.bushnell.golf.data.database.converters.DateConverter
-import com.bushnell.golf.data.database.dao.PendingTaskDao
+import com.ouvrirdeveloper.data.database.converters.DateConverter
+import com.ouvrirdeveloper.data.database.dao.PendingTaskDao
 import com.ouvrirdeveloper.data.models.entities.PendingTaskEntity
 
 @TypeConverters(

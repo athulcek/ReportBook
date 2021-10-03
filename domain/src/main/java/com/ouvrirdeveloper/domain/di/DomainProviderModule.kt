@@ -1,6 +1,6 @@
 package com.ouvrirdeveloper.domain.di
 
-import com.bushnell.golf.domain.repositories.UserRepository
+import com.ouvrirdeveloper.domain.repositories.UserRepository
 import com.ouvrirdeveloper.domain.repositories.TaskRepository
 import com.ouvrirdeveloper.domain.usecases.TaskUseCase
 import com.ouvrirdeveloper.domain.usecases.UserUseCase

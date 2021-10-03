@@ -1,6 +1,6 @@
 package com.ouvrirdeveloper.domain.usecases
 
-import com.bushnell.golf.domain.repositories.UserRepository
+import com.ouvrirdeveloper.domain.repositories.UserRepository
 import com.ouvrirdeveloper.domain.models.PendingTask
 import com.ouvrirdeveloper.domain.models.Resource
 import com.ouvrirdeveloper.domain.models.Status

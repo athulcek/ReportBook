@@ -1,4 +1,4 @@
-package com.bushnell.golf.ui.base
+package com.ouvrirdeveloper.core.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

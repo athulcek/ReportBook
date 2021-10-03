@@ -6,7 +6,7 @@ import android.widget.LinearLayout.VERTICAL
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bushnell.golf.ui.base.BaseFragmentWithBinding
+import com.ouvrirdeveloper.core.ui.BaseFragmentWithBinding
 import com.ouvrirdeveloper.basearc.R
 import com.ouvrirdeveloper.basearc.databinding.FragmentPendingTasksBinding
 import com.ouvrirdeveloper.basearc.features.home.HomeActivity

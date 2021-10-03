@@ -1,6 +1,6 @@
 package com.ouvrirdeveloper.data.repositoriesImpl
 
-import com.bushnell.golf.domain.repositories.UserRepository
+import com.ouvrirdeveloper.domain.repositories.UserRepository
 import com.ouvrirdeveloper.data.datasource.UserDataSource
 import com.ouvrirdeveloper.data.helper.KeystoreHelper
 import com.ouvrirdeveloper.data.helper.PreferenceHelper

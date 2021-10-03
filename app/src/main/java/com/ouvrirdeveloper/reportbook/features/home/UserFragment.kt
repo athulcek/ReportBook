@@ -2,7 +2,7 @@ package com.ouvrirdeveloper.basearc.features.home
 
 import android.os.Bundle
 import android.view.View
-import com.bushnell.golf.ui.base.BaseFragmentWithBinding
+import com.ouvrirdeveloper.core.ui.BaseFragmentWithBinding
 import com.ouvrirdeveloper.basearc.R
 import com.ouvrirdeveloper.basearc.databinding.FragmentUserBinding
 

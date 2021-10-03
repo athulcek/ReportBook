@@ -2,7 +2,7 @@ package com.ouvrirdeveloper.core.extensions
 
 import android.content.Context
 import android.widget.Toast
-import com.bushnell.golf.ui.base.BaseFragment
+import com.ouvrirdeveloper.core.ui.BaseFragment
 import com.ouvrirdeveloper.basearc.ToastLength
 import com.ouvrirdeveloper.basearc.ui.base.BaseActivity
 

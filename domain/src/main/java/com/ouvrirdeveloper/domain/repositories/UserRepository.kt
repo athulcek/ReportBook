@@ -1,4 +1,4 @@
-package com.bushnell.golf.domain.repositories
+package com.ouvrirdeveloper.domain.repositories
 
 import com.ouvrirdeveloper.domain.models.PendingTask
 import com.ouvrirdeveloper.domain.models.Resource

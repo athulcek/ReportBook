@@ -8,8 +8,8 @@ import coil.ImageLoaderFactory
 import coil.util.CoilUtils
 import com.ouvrirdeveloper.data.di.DataProviderModule
 import com.ouvrirdeveloper.data.di.NetworkModule
-import com.bushnell.golf.helpers.log.HyperlinkedDebugTree
-import com.bushnell.golf.helpers.log.ReleaseTree
+import com.ouvrirdeveloper.core.log.HyperlinkedDebugTree
+import com.ouvrirdeveloper.core.log.ReleaseTree
 import com.orhanobut.logger.*
 import com.ouvrirdeveloper.basearc.BuildConfig
 import com.ouvrirdeveloper.basearc.R

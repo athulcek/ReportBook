@@ -2,10 +2,10 @@ package com.ouvrirdeveloper.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.bushnell.golf.data.database.AppDatabase
-import com.bushnell.golf.data.database.dao.PendingTaskDao
-import com.bushnell.golf.data.datasource.FileDataSource
-import com.bushnell.golf.domain.repositories.UserRepository
+import com.ouvrirdeveloper.data.database.AppDatabase
+import com.ouvrirdeveloper.data.database.dao.PendingTaskDao
+import com.ouvrirdeveloper.data.datasource.FileDataSource
+import com.ouvrirdeveloper.domain.repositories.UserRepository
 import com.ouvrirdeveloper.data.api.UserApiService
 import com.ouvrirdeveloper.data.datasource.TaskDataSource
 import com.ouvrirdeveloper.data.datasource.UserDataSource

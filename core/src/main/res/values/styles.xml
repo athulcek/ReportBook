@@ -70,7 +70,7 @@
         <item name="android:textSize">@dimen/font_normal_size_18</item>
     </style>
 
-    <style name="BushnellEditTextStyle" parent="AppEditTextViewStyle">
+    <style name="AppEditTextStyle" parent="AppEditTextViewStyle">
         <item name="android:paddingBottom">16dp</item>
         <item name="android:textCursorDrawable">@drawable/black_cursor</item>
         <item name="android:textSize">@dimen/font_normal_size_16</item>

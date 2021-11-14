@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="ou_text" format="string" />
+    <attr name="ou_title" format="string" />
+    <attr name="guide_itemSpacing" format="dimension" />
+
+    <declare-styleable name="OUTextView">
+        <attr name="ou_text" />
+        <attr name="ou_title" />
+        <attr name="android:background" />
+    </declare-styleable>
+</resources>

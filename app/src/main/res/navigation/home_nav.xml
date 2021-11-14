@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/destination_homeFragment">
+
+    <fragment
+        android:id="@+id/destination_pendingTaskFragment"
+        android:name="com.ouvrirdeveloper.reportbook.features.home.pending_task.PendingTaskFragment"
+        android:label="PendingTaskFragment" >
+        <action
+            android:id="@+id/go_to_details"
+            app:destination="@id/destination_pendingTaskDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_pendingTaskDetailFragment"
+        android:name="com.ouvrirdeveloper.reportbook.features.home.pending_task.PendingTaskDetailFragment"
+        android:label="PendingTaskDetailFragment" >
+        <action
+            android:id="@+id/action_pendingTaskDetailFragment_to_requisitionDetailFragment"
+            app:destination="@id/destination_requisitionDetailFragment" />
+        <argument
+            android:name="docsrchcode"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_requisitionDetailFragment"
+        android:name="com.ouvrirdeveloper.reportbook.features.home.view_document.RequisitionDetailFragment"
+        android:label="RequisitionDetailFragment" />
+    <fragment
+        android:id="@+id/destination_homeFragment"
+        android:name="com.ouvrirdeveloper.reportbook.features.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_destination_pendingTaskFragment"
+            app:destination="@id/destination_pendingTaskFragment"
+            />
+    </fragment>
+</navigation>

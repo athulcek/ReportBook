@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050165959098",
+    "project_id": "report-book-291f5",
+    "storage_bucket": "report-book-291f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050165959098:android:f27bc33b2526c159c6a583",
+        "android_client_info": {
+          "package_name": "com.ouvrirdeveloper.reportbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050165959098-unp6ce8orqhce7v75s1a0dilb1t3lksj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ZKy_WX09Dflh21HFt3pMgFrJIZamumM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050165959098-unp6ce8orqhce7v75s1a0dilb1t3lksj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

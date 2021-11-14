@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glVLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glVRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glHTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".05" />
+
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbEnableColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/glVLeft"
+            app:layout_constraintTop_toTopOf="@+id/glHTop" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEnableColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="default color"
+            app:layout_constraintEnd_toEndOf="@+id/glVRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cbEnableColor"
+            app:layout_constraintTop_toTopOf="@+id/glHTop" />
+
+        <View
+            android:id="@+id/viewColor"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEnableColor"
+            app:layout_constraintEnd_toEndOf="@+id/glVRight"
+            app:layout_constraintStart_toStartOf="@+id/glVLeft" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchDayNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/glVLeft"
+            app:layout_constraintTop_toBottomOf="@+id/viewColor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

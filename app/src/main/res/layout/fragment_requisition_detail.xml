@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ouvrirdeveloper.domain.models.RequisitionDetail" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layoutProjectDetailsScroll"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:layout_marginVertical="@dimen/dp_5"
+            app:layout_constraintBottom_toTopOf="@+id/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/layoutProjectDetails"
+                layout="@layout/partial_layout_project_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:item="@{item}" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/partial_layout_header_requisition_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_marginVertical="@dimen/dp_20"
+            app:layout_constraintBottom_toTopOf="@+id/rvRequisition"
+            app:layout_constraintEnd_toEndOf="@+id/rvRequisition"
+            app:layout_constraintHeight_percent="0.10"
+            app:layout_constraintStart_toStartOf="@+id/rvRequisition"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProjectDetailsScroll" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRequisition"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.50"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

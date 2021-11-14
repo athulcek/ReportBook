@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="task"
+            type="com.ouvrirdeveloper.domain.models.PendingTaskDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glVerticalLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glVerticalRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <include
+            android:id="@+id/layout_srno"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintBottom_toTopOf="@+id/layout_docsrchcode"
+            app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:leftText="@{@string/srno}"
+            app:rightText="@{String.valueOf(task.srNo)}" />
+
+        <include
+            android:id="@+id/layout_docsrchcode"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_doctype"
+            app:layout_constraintEnd_toEndOf="@+id/layout_srno"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_srno"
+            app:layout_constraintTop_toBottomOf="@+id/layout_srno"
+            app:leftText="@{@string/docsrchcode}"
+            app:rightText="@{task.docsrchcode}" />
+
+        <include
+            android:id="@+id/layout_doctype"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_docnumber"
+            app:layout_constraintEnd_toEndOf="@+id/layout_docsrchcode"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_docsrchcode"
+            app:layout_constraintTop_toBottomOf="@+id/layout_docsrchcode"
+            app:leftText="@{@string/doctype}"
+            app:rightText="@{task.doctype}" />
+
+        <include
+            android:id="@+id/layout_docnumber"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_docdate"
+            app:layout_constraintEnd_toEndOf="@+id/layout_doctype"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_doctype"
+            app:layout_constraintTop_toBottomOf="@+id/layout_doctype"
+            app:leftText="@{@string/docnumber}"
+            app:rightText="@{task.docnumber}" />
+
+        <include
+            android:id="@+id/layout_docdate"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_project"
+            app:layout_constraintEnd_toEndOf="@+id/layout_docnumber"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_docnumber"
+            app:layout_constraintTop_toBottomOf="@+id/layout_docnumber"
+            app:leftText="@{@string/docdate}"
+            app:rightText="@{task.docdate}" />
+
+        <include
+            android:id="@+id/layout_project"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_docvalue"
+            app:layout_constraintEnd_toEndOf="@+id/layout_docdate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_docdate"
+            app:layout_constraintTop_toBottomOf="@+id/layout_docdate"
+            app:leftText="@{@string/project}"
+            app:rightText="@{task.project}" />
+
+        <include
+            android:id="@+id/layout_docvalue"
+            layout="@layout/partial_row_item"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btnview"
+            app:layout_constraintEnd_toEndOf="@+id/layout_project"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/layout_project"
+            app:layout_constraintTop_toBottomOf="@+id/layout_project"
+            app:leftText="@{@string/docvalue}"
+            app:rightText="@{String.valueOf(task.docvalue)}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnview"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:paddingVertical="@dimen/dp_15"
+            android:text="@string/btnview"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnapprove"
+            app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+            app:layout_constraintHeight_default="spread"
+            app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+            app:layout_constraintTop_toBottomOf="@+id/layout_docvalue"
+            app:strokeColor="@color/black_800"
+            app:strokeWidth="2dp" />
+
+        <View
+            android:id="@+id/glBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnview" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnapprove"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_marginVertical="@dimen/sp_18"
+            android:background="@color/green_500"
+            android:gravity="center"
+            android:text="@string/approve"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnreject"
+            app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+            app:layout_constraintTop_toBottomOf="@+id/glBottom"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnreject"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_marginVertical="@dimen/sp_18"
+            android:background="@color/red_200"
+            android:gravity="center"
+            android:text="@string/reject"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+            app:layout_constraintStart_toEndOf="@+id/btnapprove"
+            app:layout_constraintTop_toBottomOf="@+id/glBottom"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

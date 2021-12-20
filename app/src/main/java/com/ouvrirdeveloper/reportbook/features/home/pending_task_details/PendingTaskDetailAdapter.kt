@@ -12,6 +12,7 @@ import com.ouvrirdeveloper.reportbook.ui.viewholder.ErrorViewHolder.Companion.sh
 import com.ouvrirdeveloper.reportbook.ui.viewholder.PendingTaskDetailsViewHolder
 import com.ouvrirdeveloper.reportbook.ui.viewholder.ProgressViewHolder
 import com.ouvrirdeveloper.reportbook.ui.viewholder.ProgressViewHolder.Companion.showProgress
+/*
 
 class PendingTaskDetailAdapter(
     private val viewDocument: (PendingTaskDetail) -> Unit,
@@ -48,4 +49,4 @@ class PendingTaskDetailAdapter(
     }
 
 
-}
+}*/

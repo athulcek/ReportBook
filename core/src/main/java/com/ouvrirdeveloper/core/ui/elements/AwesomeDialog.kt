@@ -8,8 +8,12 @@ import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.ouvrirdeveloper.core.R
 import com.ouvrirdeveloper.core.databinding.AwesomeDilaogBinding
+import com.ouvrirdeveloper.core.ui.elements.AwesomeDialog.Companion.binding
 
 
 class AwesomeDialog {
@@ -22,9 +26,7 @@ class AwesomeDialog {
     }
 
     companion object {
-
-        private lateinit var layoutInflater: LayoutInflater
-        lateinit var binding: AwesomeDilaogBinding
+        var binding: AwesomeDilaogBinding? = null
 
         /***
          * core method For Alert Dialog
@@ -32,14 +34,16 @@ class AwesomeDialog {
         fun build(
             context: Activity
         ): AlertDialog {
-            layoutInflater = LayoutInflater.from(context)
-            binding = AwesomeDilaogBinding.inflate(layoutInflater)
+            LayoutInflater.from(context)?.apply {
+                binding = AwesomeDilaogBinding.inflate(this)
+            }
             val alertDialog =
                 AlertDialog.Builder(
                     context, R.style.full_screen_dialog
                 )
-                    .setView(binding.root)
+                    .setView(binding?.root)
             val alert: AlertDialog = alertDialog.create()
+            alert.subscribeToLifecycleEvents(context as LifecycleOwner)
             // Let's start with animation work. We just need to create a style and use it here as follows.
             //Pop In and Pop Out Animation yet pending
 //            alert.window?.attributes?.windowAnimations = R.style.SlidingDialogAnimation
@@ -52,20 +56,38 @@ class AwesomeDialog {
 /***
  * Title Properties For Alert Dialog
  * */
+fun AlertDialog.cancelable(
+    cancelable: Boolean
+): AlertDialog {
+    if (cancelable) {
+        AwesomeDialog.binding?.parentLayout?.setOnClickListener {
+            dismiss()
+        }
+        AwesomeDialog.binding?.mainLayout?.setOnClickListener(null)
+    } else {
+        AwesomeDialog.binding?.mainLayout?.setOnClickListener(null)
+        AwesomeDialog.binding?.parentLayout?.setOnClickListener(null)
+    }
+    return this
+}
+
+/***
+ * Title Properties For Alert Dialog
+ * */
 fun AlertDialog.title(
     title: String,
     fontStyle: Typeface? = null,
     titleColor: Int = 0
 ): AlertDialog {
-    val tvtitle = AwesomeDialog.binding.title
-    tvtitle.text = title.trim()
+    val tvtitle = AwesomeDialog.binding?.title
+    tvtitle?.text = title.trim()
     if (fontStyle != null) {
-        tvtitle.typeface = fontStyle
+        tvtitle?.typeface = fontStyle
     }
     if (titleColor != 0) {
-        tvtitle.setTextColor(titleColor)
+        tvtitle?.setTextColor(titleColor)
     }
-    tvtitle.show()
+    tvtitle?.show()
     return this
 }
 
@@ -88,14 +110,14 @@ fun AlertDialog.background(
 fun AlertDialog.position(
     position: AwesomeDialog.POSITIONS = AwesomeDialog.POSITIONS.BOTTOM
 ): AlertDialog {
-    val mainLayout = AwesomeDialog.binding.mainLayout
-    val layoutParams = mainLayout.layoutParams as RelativeLayout.LayoutParams
+    val mainLayout = AwesomeDialog.binding?.mainLayout
+    val layoutParams = mainLayout?.layoutParams as RelativeLayout.LayoutParams
     if (position == AwesomeDialog.POSITIONS.CENTER) {
         layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
     } else if (position == AwesomeDialog.POSITIONS.BOTTOM) {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
     }
-    mainLayout!!.layoutParams = layoutParams
+    mainLayout.layoutParams = layoutParams
     return this
 }
 
@@ -107,14 +129,14 @@ fun AlertDialog.body(
     fontStyle: Typeface? = null,
     color: Int = 0
 ): AlertDialog {
-    val subHeading = AwesomeDialog.binding.subHeading
-    subHeading.text = body.trim()
-    subHeading.show()
+    val subHeading = AwesomeDialog.binding?.subHeading
+    subHeading?.text = body.trim()
+    subHeading?.show()
     if (fontStyle != null) {
-        subHeading.typeface = fontStyle
+        subHeading?.typeface = fontStyle
     }
     if (color != 0) {
-        subHeading.setTextColor(color)
+        subHeading?.setTextColor(color)
     }
     return this
 }
@@ -126,13 +148,13 @@ fun AlertDialog.icon(
     icon: Int,
     animateIcon: Boolean = false
 ): AlertDialog {
-    val image = AwesomeDialog.binding.image
-    image.setImageResource(icon)
-    image.show()
+    val image = AwesomeDialog.binding?.image
+    image?.setImageResource(icon)
+    image?.show()
     // Pulse Animation for Icon
     if (animateIcon) {
         val pulseAnimation = AnimationUtils.loadAnimation(context, R.anim.pulse)
-        image.startAnimation(pulseAnimation)
+        image?.startAnimation(pulseAnimation)
     }
     return this
 }
@@ -148,16 +170,16 @@ fun AlertDialog.onPositive(
     textColor: Int? = null,
     action: (() -> Unit)? = null
 ): AlertDialog {
-    val yesButton = AwesomeDialog.binding.yesButton
-    yesButton.show()
+    val yesButton = AwesomeDialog.binding?.yesButton
+    yesButton?.show()
     if (buttonBackgroundColor != null) {
-        yesButton.setBackgroundResource(buttonBackgroundColor)
+        yesButton?.setBackgroundResource(buttonBackgroundColor)
     }
     if (textColor != null) {
-        yesButton.setTextColor(textColor)
+        yesButton?.setTextColor(textColor)
     }
-    yesButton.text = text.trim()
-    yesButton.setOnClickListener {
+    yesButton?.text = text.trim()
+    yesButton?.setOnClickListener {
         action?.invoke()
         dismiss()
     }
@@ -175,16 +197,38 @@ fun AlertDialog.onNegative(
     textColor: Int? = null,
     action: (() -> Unit)? = null
 ): AlertDialog {
-    val noButton = AwesomeDialog.binding.noButton
-    noButton.show()
-    noButton.text = text.trim()
+    val noButton = AwesomeDialog.binding?.noButton
+    noButton?.show()
+    noButton?.text = text.trim()
     if (textColor != null) {
-        noButton.setTextColor(textColor)
+        noButton?.setTextColor(textColor)
     }
     if (buttonBackgroundColor != null) {
-        noButton.setBackgroundResource(buttonBackgroundColor)
+        noButton?.setBackgroundResource(buttonBackgroundColor)
     }
-    noButton.setOnClickListener {
+    noButton?.setOnClickListener {
+        action?.invoke()
+        dismiss()
+    }
+    return this
+}
+
+fun AlertDialog.onAction(
+    text: String,
+    buttonBackgroundColor: Int? = null,
+    textColor: Int? = null,
+    action: (() -> Unit)? = null
+): AlertDialog {
+    val actionButton = AwesomeDialog.binding?.actionButton
+    actionButton?.show()
+    if (buttonBackgroundColor != null) {
+        actionButton?.setBackgroundResource(buttonBackgroundColor)
+    }
+    if (textColor != null) {
+        actionButton?.setTextColor(textColor)
+    }
+    actionButton?.text = text.trim()
+    actionButton?.setOnClickListener {
         action?.invoke()
         dismiss()
     }
@@ -193,4 +237,21 @@ fun AlertDialog.onNegative(
 
 private fun View.show() {
     this.visibility = View.VISIBLE
+}
+
+private fun AlertDialog.subscribeToLifecycleEvents(
+    lifecycleOwner: LifecycleOwner?,
+    dismissHandler: (() -> Unit)? = null
+) {
+    val lifecycleObserver = LifecycleEventObserver { _, event ->
+        if (event == Lifecycle.Event.ON_PAUSE && isShowing) {
+            dismiss()
+            dismissHandler?.invoke()
+        }
+    }
+    lifecycleOwner?.apply { this.lifecycle.addObserver(lifecycleObserver) }
+    setOnDismissListener {
+        binding = null
+        lifecycleOwner?.apply { this.lifecycle.removeObserver(lifecycleObserver) }
+    }
 }

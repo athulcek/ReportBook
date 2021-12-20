@@ -53,10 +53,10 @@ inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
 }
 
-inline fun View.show() {
+inline fun View.makeVisible() {
     if (visibility != View.VISIBLE) visibility = View.VISIBLE
 }
 
-inline fun View.hide() {
+inline fun View.makeInvisible() {
     if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
 }

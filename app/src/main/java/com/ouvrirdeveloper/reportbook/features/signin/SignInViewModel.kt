@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ouvrirdeveloper.basearc.core.extension.isValidEmail
 import com.ouvrirdeveloper.basearc.ui.base.BaseViewModel
+import com.ouvrirdeveloper.core.extensions.applogd
 import com.ouvrirdeveloper.core.utils.permitDiskReads
 import com.ouvrirdeveloper.domain.models.PendingTask
 import com.ouvrirdeveloper.domain.models.Resource

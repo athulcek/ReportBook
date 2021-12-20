@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ouvrirdeveloper.core.extensions.bindings
 import com.ouvrirdeveloper.core.extensions.gone
-import com.ouvrirdeveloper.core.extensions.show
+import com.ouvrirdeveloper.core.extensions.makeVisible
 import com.ouvrirdeveloper.domain.models.Resource
 import com.ouvrirdeveloper.domain.models.Status
 import com.ouvrirdeveloper.reportbook.R
@@ -46,13 +46,13 @@ class ProgressViewHolder(
             Status.NETWORK_ERROR,
             Status.HTTP_ERROR -> {
                 binding.inLayoutProgressBar.gone()
-                binding.ivRetry.show()
-                binding.tvLoading.show()
+                binding.ivRetry.makeVisible()
+                binding.tvLoading.makeVisible()
                 binding.tvLoading.text = view.context.getString(R.string.download_failed)
             }
             Status.LOADING -> {
                 binding.ivRetry.gone()
-                binding.inLayoutProgressBar.show()
+                binding.inLayoutProgressBar.makeVisible()
                 binding.tvLoading.gone()
             }
         }

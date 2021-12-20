@@ -7,5 +7,4 @@ object AppConfig {
     val versionCode = 2
     val versionName = "2.3"
     val multiDexEnabled = true
-
 }

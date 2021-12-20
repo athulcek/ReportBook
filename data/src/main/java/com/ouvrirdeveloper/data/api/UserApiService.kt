@@ -18,7 +18,7 @@ interface UserApiService {
     suspend fun viewPendingTaskList(
         @Query("intLoadType") loadType: Int,
         @Query("strDOCTYPE") docType: String = "",
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String ,
         @Query("strSrchDate") strSrchDate: String = ""
     ): BaseResponse<PedingTaskListResponse>
 
@@ -26,35 +26,35 @@ interface UserApiService {
     suspend fun viewPendingTaskDetails(
         @Query("intLoadType") loadType: Int = 0,
         @Query("strSRCHDocument") strSRCHDocument: String,
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
         @Query("strSrchDate") strSrchDate: String = ""
     ): BaseResponse<PendingTaskDetailsListResponse>
 
     @GET("VIEWDocDetails")
     suspend fun viewDocDetails(
         @Query("srchDOCSRCHCODE") srchDOCSRCHCODE: String,
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
         @Query("srchDOCNUMBER") srchDOCNUMBER: String
     ): BaseResponse<ViewRequisitionDetailListResponse?>
 
     @GET("MaterialRequestStages")
     suspend fun materialRequestStages(
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
     ): BaseResponse<MaterialRequestStageListResponse>
 
     @GET("PurchaseOrderStage")
     suspend fun purchaseOrderStage(
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
     ): BaseResponse<PurchaseOrderStageListResponse>
 
     @GET("SiteMaterialReceiptStages")
     suspend fun siteMaterialReceiptStages(
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
     ): BaseResponse<SiteMaterialReceiptStagesListResponse>
 
     @GET("SupplierInvoiceStages")
     suspend fun supplierInvoiceStages(
-        @Query("strUserid") strUserid: String = "admin",
+        @Query("strUserid") strUserid: String,
     ): BaseResponse<SupplierInvoiceStagesListResponse>
 
 }

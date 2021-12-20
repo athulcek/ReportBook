@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout.VERTICAL
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
@@ -65,7 +66,7 @@ class RequisitionDetailFragment :
         val startSnapHelper: SnapHelper = StartSnapHelper()
         startSnapHelper.attachToRecyclerView(binding.rvRequisition)
         adapter = RequisitionDetailAdapter({ viewDetails ->
-            (requireActivity() as HomeActivity).showProjectDetail(viewDetails)
+//            (requireActivity() as HomeActivity).showProjectDetail(viewDetails)
         }, {})
         binding.rvRequisition.adapter = adapter
         binding.rvRequisition.layoutManager = layoutManager
@@ -128,9 +129,8 @@ class RequisitionDetailFragment :
     }
 
 
-    override fun onBackPressed(): Boolean {
-        (requireActivity() as HomeActivity).popBackStack()
-        return true
+    override fun onBackPressed() {
+        findNavController().popBackStack()
     }
 
 }

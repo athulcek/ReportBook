@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ouvrirdeveloper.core.R
+/*
 
 private const val tagNamePrefix = "bottomNavigation#"
 
@@ -48,12 +49,13 @@ fun BottomNavigationView.setupWithNavController(
         val graphId = navHostFragment.navController.graph.id
 
         // Save to the map
+        // graphIdToTagMap[graphId] = fragmentTag
+        // Save to the map
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             graphIdToTagMap[graphId] = fragmentTag
-        }else{
-            graphIdToTagMap.put(graphId,fragmentTag)
+        } else {
+            graphIdToTagMap.put(graphId, fragmentTag)
         }
-
         // Attach or detach nav host fragment depending on whether it's the selected item.
         if (this.selectedItemId == graphId) {
             // Update livedata with the selected graph
@@ -65,20 +67,21 @@ fun BottomNavigationView.setupWithNavController(
     }
 
     // Now connect selecting an item with swapping Fragments
-    var selectedItemTag = graphIdToTagMap[this.selectedItemId]
-    val firstFragmentTag = graphIdToTagMap[firstFragmentGraphId]
+    //graphIdToTagMap[this.selectedItemId]
+    var selectedItemTag = getFromGraphKey(graphIdToTagMap, this.selectedItemId)
+    val firstFragmentTag = getFromGraphKey(graphIdToTagMap,firstFragmentGraphId) //graphIdToTagMap[firstFragmentGraphId]
     var isOnFirstFragment = selectedItemTag == firstFragmentTag
 
     // When a navigation item is selected
-    setOnNavigationItemSelectedListener { item ->
+    setOnItemSelectedListener { item ->
         // Don't do anything if the state is state has already been saved.
         if (fragmentManager.isStateSaved) {
             false
         } else {
-            val newlySelectedItemTag = graphIdToTagMap[item.itemId]
+            val newlySelectedItemTag = getFromGraphKey(graphIdToTagMap,item.itemId)//graphIdToTagMap[item.itemId]
             val newlySelectedItemIndex = getFragmentIndexFromTag(newlySelectedItemTag)
             val selectedItemIndex =
-                getFragmentIndexFromTag(graphIdToTagMap[this.selectedItemId])
+                getFragmentIndexFromTag(getFromGraphKey(graphIdToTagMap,this.selectedItemId))// graphIdToTagMap[this.selectedItemId])
             if (selectedItemTag != newlySelectedItemTag) {
                 // Pop everything above the first fragment (the "fixed start destination")
                 fragmentManager.popBackStack(
@@ -144,6 +147,15 @@ fun BottomNavigationView.setupWithNavController(
         }
     }
     return selectedNavController
+}
+
+fun getFromGraphKey(graphIdToTagMap: SparseArray<String>, key: Int): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        graphIdToTagMap[key]
+    } else {
+        graphIdToTagMap.get(key)
+    }
+
 }
 
 fun NavHostFragment.setGraph(
@@ -212,7 +224,7 @@ private fun BottomNavigationView.setupItemReselected(
     fragmentManager: FragmentManager
 ) {
     setOnItemReselectedListener { item ->
-        val newlySelectedItemTag = graphIdToTagMap[item.itemId]
+        val newlySelectedItemTag = getFromGraphKey(graphIdToTagMap,item.itemId)// graphIdToTagMap[item.itemId]
         val selectedFragment = fragmentManager.findFragmentByTag(newlySelectedItemTag)
                 as NavHostFragment
         val navController = selectedFragment.navController
@@ -256,4 +268,4 @@ private fun FragmentManager.isOnBackStack(backStackName: String): Boolean {
         }
     }
     return false
-}
+}*/

@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <include
             android:id="@+id/appbar"
@@ -22,7 +23,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainer"
+            android:id="@+id/nav_host_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -31,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_status"
-            app:navGraph="@navigation/home_nav" />
+            app:navGraph="@navigation/home_nav_graph" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

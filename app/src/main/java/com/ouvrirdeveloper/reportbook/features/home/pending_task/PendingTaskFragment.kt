@@ -28,7 +28,7 @@ class PendingTaskFragment :
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(requireContext())
         adapter = PendingTaskAdapter({ item ->
-            (requireActivity() as HomeActivity).showDetailsScreen(item)
+           // (requireActivity() as HomeActivity).showDetailsScreen(item)
         })
         binding.rvPendingTasks.adapter = adapter
         binding.rvPendingTasks.layoutManager = layoutManager

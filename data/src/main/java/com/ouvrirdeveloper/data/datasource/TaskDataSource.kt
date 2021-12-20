@@ -14,31 +14,36 @@ class TaskDataSource(
 ) {
     fun getPendingTasksDb() = pendingTaskDao.getPendingTasksDb()
 
-    suspend fun getViewPendingTaskDetails(strSRCHDocument: String): BaseResponse<PendingTaskDetailsListResponse> {
-        return apiService.viewPendingTaskDetails(strSRCHDocument = strSRCHDocument)
+    suspend fun getViewPendingTaskDetails(strSRCHDocument: String,userId:String): BaseResponse<PendingTaskDetailsListResponse> {
+        return apiService.viewPendingTaskDetails(strSRCHDocument = strSRCHDocument ,strUserid=userId )
     }
 
-    suspend fun getmaterialRequestStages(): BaseResponse<MaterialRequestStageListResponse> {
-        return apiService.materialRequestStages()
+    suspend fun getmaterialRequestStages(userId:String): BaseResponse<MaterialRequestStageListResponse> {
+        return apiService.materialRequestStages(strUserid = userId)
     }
 
-    suspend fun getPurchaseOrderStage() = apiService.purchaseOrderStage()
+    suspend fun getPurchaseOrderStage(userId:String) = apiService.purchaseOrderStage(strUserid = userId)
 
-    suspend fun getSiteMaterialReceiptStages() = apiService.siteMaterialReceiptStages()
+    suspend fun getSiteMaterialReceiptStages(userId:String) = apiService.siteMaterialReceiptStages(userId)
 
-    suspend fun getSupplierInvoiceStages() = apiService.supplierInvoiceStages()
+    suspend fun getSupplierInvoiceStages(userId:String) = apiService.supplierInvoiceStages(userId)
 
     suspend fun getviewDocDetails(
         srchDOCSRCHCODE: String,
-        srchDOCNUMBER: String
+        srchDOCNUMBER: String,
+        userId:String
     ): BaseResponse<ViewRequisitionDetailListResponse?> {
         return apiService.viewDocDetails(
             srchDOCSRCHCODE = srchDOCSRCHCODE,
-            srchDOCNUMBER = srchDOCNUMBER
+            srchDOCNUMBER = srchDOCNUMBER,
+                    strUserid=userId
         )
     }
 
-    suspend fun viewPendingTaskList(loadType: Int): BaseResponse<PedingTaskListResponse> {
-        return apiService.viewPendingTaskList(loadType)
+    suspend fun viewPendingTaskList(
+        loadType: Int,
+        userId: String
+    ): BaseResponse<PedingTaskListResponse> {
+        return apiService.viewPendingTaskList(loadType = loadType, strUserid = userId)
     }
 }

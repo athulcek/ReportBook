@@ -17,6 +17,7 @@ import androidx.annotation.NavigationRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.MutableLiveData
@@ -29,8 +30,9 @@ import com.ouvrirdeveloper.basearc.core.extension.asString
 import com.ouvrirdeveloper.basearc.core.extension.showAlertDialog
 import com.ouvrirdeveloper.basearc.helper.network.base.ConnectivityProvider
 import com.ouvrirdeveloper.core.R
-import com.ouvrirdeveloper.core.extensions.hide
-import com.ouvrirdeveloper.core.extensions.show
+import com.ouvrirdeveloper.core.extensions.applogd
+import com.ouvrirdeveloper.core.extensions.makeInvisible
+import com.ouvrirdeveloper.core.extensions.makeVisible
 import com.ouvrirdeveloper.core.ui.BaseFragment
 import com.ouvrirdeveloper.domain.usecases.UserUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -59,6 +61,7 @@ abstract class BaseActivity(
 
     private val progressLayout: View by lazy {
         var pLayout = findViewById<View>(R.id.cl_progress_loading)
+
         if (pLayout == null || pLayout.isInLayout.not()) {
             val parent: ViewGroup = (findViewById(android.R.id.content) as ViewGroup)
             val viewGroup = parent.getChildAt(0) as ViewGroup
@@ -66,45 +69,14 @@ abstract class BaseActivity(
             pLayout.elevation = 5f
             if (viewGroup is ConstraintLayout) {
                 val set1 = ConstraintSet()
-                //set1.clone(viewGroup)
-                pLayout.setLayoutParams(
-                    LinearLayoutCompat.LayoutParams(
-                        0, 0
-                    )
-                )
+                pLayout.setLayoutParams(LinearLayoutCompat.LayoutParams(0, 0))
                 viewGroup.addView(pLayout)
-
-                set1.connect(
-                    pLayout.getId(),
-                    ConstraintSet.TOP,
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.TOP,
-                    0
-                )
-                set1.connect(
-                    pLayout.getId(),
-                    ConstraintSet.LEFT,
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.LEFT,
-                    0
-                )
-                set1.connect(
-                    pLayout.getId(),
-                    ConstraintSet.RIGHT,
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.RIGHT,
-                    0
-                )
-                set1.connect(
-                    pLayout.getId(),
-                    ConstraintSet.BOTTOM,
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.BOTTOM,
-                    0
-                )
+                set1.connect(pLayout.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0)
+                set1.connect(pLayout.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 0)
+                set1.connect(pLayout.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 0)
+                set1.connect(pLayout.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0)
                 set1.applyTo(viewGroup)
             }
-            //viewGroup.addView(pLayout)
         }
         pLayout
     }
@@ -124,31 +96,53 @@ abstract class BaseActivity(
         onEndIconClick: (() -> Unit)? = null,
         backgroundColorRes: Int = R.color.primaryColor
     ) {
-        val toolbar = findViewById<TextView>(R.id.toolbar)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
-        val toolbarStartIcon = findViewById<ImageView>(R.id.toolbarStartIcon)
-        val toolbarEndIcon = findViewById<ImageView>(R.id.toolbarEndIcon)
-        toolbar?.apply {
-            setBackgroundColor(backgroundColorRes.asColor(this@BaseActivity))
-        }
-        toolbarTitle?.apply {
-            text = title
-            setTextColor(titleColorRes.asColor(this@BaseActivity))
-        }
-        toolbarStartIcon?.apply {
-            background = startIcon
-            show()
-            setOnClickListener {
-                onStartIconClick?.invoke()
+        lifecycleScope.launchWhenStarted {
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
+            val toolbarStartIcon = findViewById<ImageView>(R.id.toolbarStartIcon)
+            val toolbarEndIcon = findViewById<ImageView>(R.id.toolbarEndIcon)
+            val toolbarEndView = findViewById<View>(R.id.toolbarEndView)
+            val toolbarStartView = findViewById<View>(R.id.toolbarStartView)
+
+            toolbar?.apply {
+                setBackgroundColor(backgroundColorRes.asColor(this@BaseActivity))
+                /*setSupportActionBar(this)
+                supportActionBar?.setDisplayShowTitleEnabled(true)
+                supportActionBar?.setDisplayHomeAsUpEnabled(showHomeAsUp)
+                supportActionBar?.setIcon(R.drawable.ic_close)
+                supportActionBar?.setDisplayUseLogoEnabled(true)
+                supportActionBar?.subtitle="sub"
+                supportActionBar?.title = title
+            */
+            }
+            toolbarTitle?.apply {
+                text = title
+                setTextColor(titleColorRes.asColor(this@BaseActivity))
+            }
+            toolbarStartIcon?.apply {
+                background = startIcon
+                makeVisible()
+
+            }
+            toolbarStartView?.apply {
+                setOnClickListener {
+                    onStartIconClick?.invoke()
+                }
+            }
+            toolbarEndIcon?.apply {
+                background = endIcon
+                makeVisible()
+                setOnClickListener {
+                    onEndIconClick?.invoke()
+                }
+            }
+            toolbarEndView?.apply {
+                setOnClickListener {
+                    onStartIconClick?.invoke()
+                }
             }
         }
-        toolbarEndIcon?.apply {
-            background = endIcon
-            show()
-            setOnClickListener {
-                onEndIconClick?.invoke()
-            }
-        }
+
     }
 
     fun showAlert(
@@ -192,13 +186,13 @@ abstract class BaseActivity(
         startActivity(intent)
     }
 
-    override fun onBackPressed() {
+   /* override fun onBackPressed() {
         if (canGoBack()) {
             super.onBackPressed()
         }
-    }
+    }*/
 
-    fun canGoBack(): Boolean {
+    /*fun canGoBack(): Boolean {
         val fragmentList = supportFragmentManager.fragments
         var handled = false
         for (fragment in fragmentList) {
@@ -213,9 +207,9 @@ abstract class BaseActivity(
             }
         }
         return true
-    }
+    }*/
 
-    private fun canParentGoBack(fragment: BaseFragment): Boolean {
+    /*private fun canParentGoBack(fragment: BaseFragment): Boolean {
         var handled = false
         for (child in fragment.childFragmentManager.fragments) {
             if (child is BaseFragment && child.isVisible && child.childFragmentManager.fragments.size > 0) {
@@ -230,7 +224,7 @@ abstract class BaseActivity(
             }
         }
         return true
-    }
+    }*/
 
     override fun onStateChange(state: ConnectivityProvider.NetworkState) {
         when (state) {
@@ -246,7 +240,7 @@ abstract class BaseActivity(
         provider.removeListener(this)
     }
 
-    fun showProgress(
+    fun  showProgress(
         backgroundColorRes: Int? = null,
         message: String = R.string.loading_please_wait.asString(this),
         showRetry: Boolean = false,
@@ -260,15 +254,16 @@ abstract class BaseActivity(
             }
         }
         this.findViewById<ProgressBar>(R.id.progress_bar_loading)?.apply {
-            hide()
+            makeInvisible()
         }
-        this.findViewById<LottieAnimationView>(R.id.Lottie_loading)?.apply {
+        this.findViewById<LottieAnimationView>(R.id.lottie_loading)?.apply {
             if (showRetry) {
                 setAnimation(if (lottieFile == -1) R.raw.no_internet else lottieFile)
             } else {
                 setAnimation(if (lottieFile == -1) listOfLoadingLotties.random() else lottieFile)
             }
-            show()
+            playAnimation()
+            makeVisible()
         }
         this.findViewById<TextView>(R.id.text_view_loading)?.apply {
             text = message
@@ -279,13 +274,13 @@ abstract class BaseActivity(
                 setOnClickListener {
                     reTry?.invoke()
                 }
-                show()
+                makeVisible()
                 requestLayout()
             } else {
-                hide()
+                makeInvisible()
             }
         }
-        show()
+        makeVisible()
     }
 
     fun showRetry(
@@ -306,11 +301,11 @@ abstract class BaseActivity(
     fun hideProgress() = CoroutineScope(Dispatchers.Main).launch {
         delay(2000)
         lifecycleScope.launchWhenStarted {
-            progressLayout.hide()
+            progressLayout.makeInvisible()
         }
     }
 
-    fun setNavGraph(
+ /*   fun setNavGraph(
         @IdRes fragmentContainerId: Int,
         @NavigationRes graphResId: Int,
         @IdRes startDestinationId: Int?
@@ -325,7 +320,7 @@ abstract class BaseActivity(
         navController.setGraph(navGraph, intent.extras)
         return navController
     }
-
+*/
 }
 
 

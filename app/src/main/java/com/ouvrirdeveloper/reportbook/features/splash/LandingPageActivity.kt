@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.ouvrirdeveloper.basearc.core.extension.asString
 import com.ouvrirdeveloper.basearc.ui.base.BaseActivity
+import com.ouvrirdeveloper.core.extensions.applogd
 import com.ouvrirdeveloper.core.extensions.launchActivity
 import com.ouvrirdeveloper.core.extensions.showToast
 import com.ouvrirdeveloper.core.utils.permitDiskReads
@@ -43,6 +44,7 @@ class LandingPageActivity : BaseActivity(R.layout.activity_splash) {
 
 
     private fun launchAsPerLoginState() {
+        applogd("athul 1 $isNetworkAvailable")
         if (isNetworkAvailable) {
             splashViewModel.doLogin()
         } else {
@@ -83,7 +85,7 @@ class LandingPageActivity : BaseActivity(R.layout.activity_splash) {
                         FirebaseCrashlytics.getInstance().setUserId(it)
                     }
                 }
-                Status.LOADING -> {
+                Status.INITIAL,Status.LOADING -> {
                     showProgress(
                         // lottieFile = R.raw.loading,
                         message = R.string.signing_in_progress.asString(this)

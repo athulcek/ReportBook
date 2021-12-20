@@ -86,4 +86,6 @@
     <string name="site_material_receipt_stages">Site Material Receipt Stages</string>
     <string name="supplier_invoices">Supplier Invoices</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="action">Action</string>
+    <string name="search_doc_number">Search doc number here</string>
 </resources>

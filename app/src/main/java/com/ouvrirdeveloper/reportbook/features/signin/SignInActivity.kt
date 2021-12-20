@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.ouvrirdeveloper.basearc.ui.base.BaseActivityWithBinding
 import com.ouvrirdeveloper.core.constants.AppConstant
+import com.ouvrirdeveloper.core.extensions.applogd
 import com.ouvrirdeveloper.core.extensions.launchActivityAsRoot
 import com.ouvrirdeveloper.core.extensions.showKeyboard
 import com.ouvrirdeveloper.core.extensions.showToast
@@ -68,6 +69,7 @@ class SignInActivity : BaseActivityWithBinding<ActivitySignInBinding>(R.layout.a
                                 404 -> {
                                     showToast(getString(R.string.invalid_credentials))
                                     launchActivityAsRoot<SignInActivity> {}
+                                    finish()
                                     true
                                 }
                                 else -> false
@@ -119,6 +121,7 @@ class SignInActivity : BaseActivityWithBinding<ActivitySignInBinding>(R.layout.a
             )
         }
         launchActivityAsRoot<HomeActivity> { }
+        finish()
     }
 
     private fun observePendingTask() {
@@ -128,6 +131,7 @@ class SignInActivity : BaseActivityWithBinding<ActivitySignInBinding>(R.layout.a
                 Status.EMPTY, Status.SUCCESS -> {
                     hideProgress()
                     launchActivityAsRoot<HomeActivity> { }
+                    finish()
                 }
                 Status.GENERIC_ERROR,
                 Status.NETWORK_ERROR,

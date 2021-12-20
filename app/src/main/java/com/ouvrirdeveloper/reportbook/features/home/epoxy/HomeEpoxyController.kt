@@ -10,8 +10,15 @@ import com.ouvrirdeveloper.domain.models.*
 import com.ouvrirdeveloper.reportbook.R
 import com.ouvrirdeveloper.reportbook.features.home.epoxy.data.HomeData
 import com.ouvrirdeveloper.reportbook.features.home.epoxy.models.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)? = null) :
+class HomeEpoxyController(
+    val context: Context,
+    val onClick: MutableSharedFlow<Pair<ReportType, Any>>
+) :
     EpoxyController() {
 
     lateinit var width: String
@@ -77,7 +84,17 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                         HomeData.getSiteMaterialReceiptStage(
                             this@HomeEpoxyController.context,
                             this@HomeEpoxyController.siteMaterialReceiptStage,
-                            this@HomeEpoxyController.width
+                            this@HomeEpoxyController.width,
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    this@HomeEpoxyController.onClick.emit(
+                                        Pair(
+                                            ReportType.SiteMaterialReceiptStage,
+                                            it
+                                        ))
+                                }
+                            }
+
                         ).map {
                             it.id(it.title)
                         }
@@ -117,16 +134,26 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                     title(R.string.purchase_order_states.asString(context = this@HomeEpoxyController.context))
                     id("purchase_order_states")
                 }
-               /* dividerViewBindingEpoxyHolder {
-                    id("purchase_order_states_divider")
-                }*/
+                /* dividerViewBindingEpoxyHolder {
+                     id("purchase_order_states_divider")
+                 }*/
                 verticalGridCarousel {
                     id("purchaseOrderStage")
                     models(
                         HomeData.getPurchaseOrderStage(
                             this@HomeEpoxyController.context,
                             this@HomeEpoxyController.purchaseOrderStage,
-                            this@HomeEpoxyController.width
+                            this@HomeEpoxyController.width,
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    this@HomeEpoxyController.onClick.emit(
+                                        Pair(
+                                            ReportType.PurchaseOrderStage,
+                                            it
+                                        ))
+                                }
+                            }
+
                         ).map {
                             it.id(it.title)
                         }
@@ -168,16 +195,26 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                     title(R.string.supplier_invoices.asString(context = this@HomeEpoxyController.context))
                     id("supplier_invoices")
                 }
-               /* dividerViewBindingEpoxyHolder {
-                    id("supplier_invoices_divider")
-                }*/
+                /* dividerViewBindingEpoxyHolder {
+                     id("supplier_invoices_divider")
+                 }*/
                 verticalGridCarousel {
                     id("supplierInvoiceStage")
                     models(
                         HomeData.getSupplierInvoiceStage(
                             this@HomeEpoxyController.context,
                             this@HomeEpoxyController.supplierInvoiceStage,
-                            this@HomeEpoxyController.width
+                            this@HomeEpoxyController.width,
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    this@HomeEpoxyController.onClick.emit(
+                                        Pair(
+                                            ReportType.SupplierInvoiceStage,
+                                            it
+                                        ))
+                                }
+                            }
+
                         ).map {
                             it.id(it.title)
                         }
@@ -216,9 +253,9 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                     title(R.string.material_request_stages.asString(context = this@HomeEpoxyController.context))
                     id("material_request_stages")
                 }
-              /*  dividerViewBindingEpoxyHolder {
-                    id("material_request_stages_divider")
-                }*/
+                /*  dividerViewBindingEpoxyHolder {
+                      id("material_request_stages_divider")
+                  }*/
 
                 verticalGridCarousel {
                     id("getmaterial_request_stages")
@@ -226,7 +263,17 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                         HomeData.getMaterialRequestStages(
                             this@HomeEpoxyController.context,
                             this@HomeEpoxyController.materialRequestStage,
-                            this@HomeEpoxyController.width
+                            this@HomeEpoxyController.width,
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    this@HomeEpoxyController.onClick.emit(
+                                        Pair(
+                                            ReportType.MaterialRequestStages,
+                                            it
+                                        )
+                                    )
+                                }
+                            }
                         ).map {
                             it.id(it.title)
                         }
@@ -296,33 +343,23 @@ class HomeEpoxyController(val context: Context, val onClick: ((String) -> Unit)?
                     title(R.string.my_approval_pendings.asString(context = this@HomeEpoxyController.context))
                     id("my_approval_pendings")
                 }
-              /*  dividerViewBindingEpoxyHolder {
-                    id("my_approval_pendings_divider")
-                }*/
-                /* carouselNoSnapBuilder {
-             id("getmy_approval_pendings")
-             numViewsToShowOnScreen(this@HomeEpoxyController.itemsPerPage)
-             this@HomeEpoxyController.pending.forEach { item ->
-                 contentViewBindingEpoxyHolder {
-                     id(item.doctype)
-                     title(item.doctype)
-                     count(item.totalcount)
-                     color(R.color.secondaryColor)
-                     context(this@HomeEpoxyController.context)
-                     width(this@HomeEpoxyController.width.toInt())
-                     onClick {
-                         this@HomeEpoxyController.onClick?.invoke(it)
-                     }
-                 }
-             }
-         }*/
+
                 verticalGridCarousel {
                     id("getmy_approval_pendings")
                     models(
                         HomeData.getMyApprovalPendings(
                             this@HomeEpoxyController.context,
                             this@HomeEpoxyController.pending,
-                            this@HomeEpoxyController.width
+                            this@HomeEpoxyController.width,
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    this@HomeEpoxyController.onClick.emit(
+                                        Pair(
+                                            ReportType.ApprovalPendings,
+                                            it
+                                        ))
+                                }
+                            }
                         ).map {
                             it.id(it.title)
                         }

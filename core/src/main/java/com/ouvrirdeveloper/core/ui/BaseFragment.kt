@@ -1,10 +1,17 @@
 package com.ouvrirdeveloper.core.ui
 
 import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.ouvrirdeveloper.basearc.ui.base.BaseActivity
 import com.ouvrirdeveloper.core.R
 import com.ouvrirdeveloper.core.utils.PermissionUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 abstract class BaseFragment : Fragment() {
 
@@ -40,18 +47,16 @@ abstract class BaseFragment : Fragment() {
         onDismiss: (() -> Unit)? = null
     ) {
         if (!isRemoving && isAdded) {
-            activity?.let {
-                if (it is BaseActivity) {
-                    it.showAlert(
-                        message,
-                        cancellable,
-                        onPositiveButtonClick,
-                        positiveButtonText,
-                        negativeButtonText,
-                        onNegativeButtonClick,
-                        onDismiss
-                    )
-                }
+            getActivity?.let {
+                it.showAlert(
+                    message,
+                    cancellable,
+                    onPositiveButtonClick,
+                    positiveButtonText,
+                    negativeButtonText,
+                    onNegativeButtonClick,
+                    onDismiss
+                )
             }
         }
     }
@@ -68,9 +73,20 @@ abstract class BaseFragment : Fragment() {
 
     /**
      * Could handle back press.
-     * @return true if back press was handled
      */
-    open fun onBackPressed(): Boolean {
-        return false
+    open fun onBackPressed() {}
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            lifecycleScope.launchWhenStarted {
+                val callback =
+                    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+                        onBackPressed()
+                    }
+            }
+
+        }
     }
 }

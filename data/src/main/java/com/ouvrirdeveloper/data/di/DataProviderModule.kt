@@ -22,7 +22,7 @@ val DataProviderModule = module {
 
     single { createRoomDatabase(get()) }
     single { createUserRepository(get(), get()) }
-    single { createTaskRepository(get()) }
+    single { createTaskRepository(get(),get()) }
     single { createUserDataSource(get(), get()) }
     single { createTaskDataSource(get(), get()) }
     single { createPreferenceHelper(get()) }
@@ -51,9 +51,10 @@ fun createUserRepository(
 
 
 fun createTaskRepository(
-    taskDataSource: TaskDataSource
+    taskDataSource: TaskDataSource,
+    preferenceHelper: PreferenceHelper
 ): TaskRepository =
-    TaskRepositoryImpl(taskDataSource)
+    TaskRepositoryImpl(taskDataSource,preferenceHelper)
 
 fun createFileDataSource(context: Context) = FileDataSource(context)
 fun createPendingTaskDao(appDatabase: AppDatabase) = appDatabase.getPendingTaskDao()

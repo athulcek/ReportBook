@@ -1,15 +1,32 @@
 package com.ouvrirdeveloper.reportbook.features.home
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.ouvrirdeveloper.basearc.ui.base.BaseViewModel
 import com.ouvrirdeveloper.domain.models.*
 import com.ouvrirdeveloper.domain.usecases.TaskUseCase
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onStart
+import com.ouvrirdeveloper.domain.usecases.UserUseCase
+import com.ouvrirdeveloper.reportbook.features.home.epoxy.models.ReportType
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class HomeViewModel(val taskUseCase: TaskUseCase) : BaseViewModel() {
+class HomeViewModel(val taskUseCase: TaskUseCase, val userUseCase: UserUseCase) : BaseViewModel() {
+
+    private var _currentType: ReportType? = null
+    val currentType: ReportType?
+        get() = _currentType
+
+    val _onHomeClickListner = MutableSharedFlow<Pair<ReportType, Any>>()
+    val onHomeClickListner = _onHomeClickListner.asSharedFlow()
+
+    val _onTaskDetailAction = MutableSharedFlow<Any>()
+    val onTaskDetailAction = _onTaskDetailAction.asSharedFlow()
+
+    val _onTaskDetailRetry = MutableSharedFlow<Boolean>()
+    val onTaskDetailRetry = _onTaskDetailRetry.asSharedFlow()
 
     private val _pendingTasks = MutableLiveData<Resource<List<PendingTask>?>>()
     val pendingTasks: LiveData<Resource<List<PendingTask>?>>
@@ -26,14 +43,49 @@ class HomeViewModel(val taskUseCase: TaskUseCase) : BaseViewModel() {
 
     val requisitionDetail = MutableLiveData<Resource<List<RequisitionDetail>?>>()
 
+    val flowComplete = MediatorLiveData<Int>()
+
+    init {
+
+        flowComplete.postValue(0)
+        flowComplete.addSource(pendingTasks) {
+            if (checkStatus(it.status)) {
+                flowComplete.value = flowComplete.value?.plus(1)
+            }
+        }
+        flowComplete.addSource(materialRequestStages) {
+            if (checkStatus(it.status)) {
+                flowComplete.value = flowComplete.value?.plus(1)
+            }
+        }
+        flowComplete.addSource(purchaseOrderStage) {
+            if (checkStatus(it.status)) {
+                flowComplete.value = flowComplete.value?.plus(1)
+            }
+        }
+        flowComplete.addSource(siteMaterialReceiptStages) {
+            if (checkStatus(it.status)) {
+                flowComplete.value = flowComplete.value?.plus(1)
+            }
+        }
+        flowComplete.addSource(supplierInvoiceStages) {
+            if (checkStatus(it.status)) {
+                flowComplete.value = flowComplete.value?.plus(1)
+            }
+        }
+    }
+
+    private fun checkStatus(status: Status) =
+        status != Status.LOADING && status != Status.INITIAL
+
 
     fun getmaterialRequestStages() {
-        runOnMain {
-            taskUseCase.getmaterialRequestStages()
-                .onStart { materialRequestStages.value = Resource.loading() }
-                .collect {
-                    materialRequestStages.value = it
-                }
+        viewModelScope.launch {
+                taskUseCase.getmaterialRequestStages()
+                    .onStart { materialRequestStages.value = Resource.loading() }
+                    .collect {
+                        materialRequestStages.value = it
+                    }
         }
     }
 
@@ -89,11 +141,43 @@ class HomeViewModel(val taskUseCase: TaskUseCase) : BaseViewModel() {
 
     fun getPendingTasks() {
         runOnMain {
-            taskUseCase.getPendingTaskList(1).collect {
-                _pendingTasks.value = it
-
-            }
+            taskUseCase.getPendingTaskList(1)
+                .onStart { _pendingTasks.value = Resource.loading() }
+                .collect {
+                    _pendingTasks.value = it
+                }
         }
     }
 
+    fun initPendingTaskDetails() {
+        pendingTaskDetails.value = Resource.initial(null)
+    }
+
+    fun updateConfig(remoteConfigData: RemoteConfigData) {
+        userUseCase.updateConfig(remoteConfigData)
+    }
+
+    suspend fun verifyCredentialswithRemoteData(): Flow<RemoteConfigData?> {
+        return flow {
+            if (userUseCase.getUserFromDisk() != null)
+                userUseCase.getremoteConfig().collect {
+                    emit(it)
+                }
+            else
+                emit(null)
+        }
+
+    }
+
+    fun logout() = userUseCase.onLogout()
+    fun resetComplete() {
+        flowComplete.postValue(0)
+    }
+
+    fun setCurrentType(type: ReportType) {
+        _currentType = type
+    }
+
+    fun taskDetailAction() = _onTaskDetailAction
+    fun taskDetailRetry() = _onTaskDetailRetry
 }

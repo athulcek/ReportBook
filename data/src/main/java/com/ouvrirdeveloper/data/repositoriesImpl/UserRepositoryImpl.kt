@@ -1,5 +1,7 @@
 package com.ouvrirdeveloper.data.repositoriesImpl
 
+import android.content.SharedPreferences
+import com.ouvrirdeveloper.core.BuildConfig
 import com.ouvrirdeveloper.data.datasource.UserDataSource
 import com.ouvrirdeveloper.data.helper.KeystoreHelper
 import com.ouvrirdeveloper.data.helper.PreferenceHelper
@@ -7,6 +9,7 @@ import com.ouvrirdeveloper.data.helper.SharedConstants
 import com.ouvrirdeveloper.data.models.entities.PendingTaskEntity
 import com.ouvrirdeveloper.data.safeApiCall
 import com.ouvrirdeveloper.domain.models.PendingTask
+import com.ouvrirdeveloper.domain.models.RemoteConfigData
 import com.ouvrirdeveloper.domain.models.Resource
 import com.ouvrirdeveloper.domain.models.User
 import com.ouvrirdeveloper.domain.repositories.UserRepository
@@ -16,6 +19,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+
 
 class UserRepositoryImpl(
     private val userDataSource: UserDataSource,
@@ -41,14 +45,13 @@ class UserRepositoryImpl(
     }
 
 
-
-
     override fun logOut() {
-        /*clearTokenDetails()
-        setIsUserLoggedIn(false)
-        val loginDetails = getKeepMeSignedInDetail()
-        loginDetails.password = ""
-        saveIsKeepMeLoggedIn(loginDetails, isKeepMeLoggedIn())*/
+        with(Dispatchers.IO) {
+            val preferences: SharedPreferences = preferenceHelper.defaultPrefs()
+            val editor = preferences.edit()
+            editor.clear()
+            editor.apply()
+        }
     }
 
     override fun isKeepMeLoggedIn(): Boolean {
@@ -74,12 +77,12 @@ class UserRepositoryImpl(
                 false
             ) == true
         ) {
-            val u= User(
+            val user = User(
                 userId = preferenceHelper.getPref(SharedConstants.PrefUtil_UNAME, "") ?: "",
                 password = preferenceHelper.getPref(SharedConstants.PrefUtil_PASS_KEY, "") ?: "",
                 companyId = preferenceHelper.getPref(SharedConstants.PrefUtil_COMPANY_ID, 0) ?: 0
             )
-            return u
+            return user
         }
         return null
     }
@@ -91,6 +94,31 @@ class UserRepositoryImpl(
             preferenceHelper.setPref(SharedConstants.PrefUtil_UNAME, userId)
             preferenceHelper.setPref(SharedConstants.PrefUtil_PASS_KEY, password)
             preferenceHelper.setPref(SharedConstants.PrefUtil_COMPANY_ID, companyId)
+        }
+    }
+
+    override fun updateConfig(remoteConfigData: RemoteConfigData) {
+        with(Dispatchers.IO) {
+            preferenceHelper.setPref(
+                SharedConstants.PrefUtil_CURRENT_VERSION_CODE,
+                remoteConfigData.currentVersion
+            )
+            preferenceHelper.setPref(
+                SharedConstants.PrefUtil_ENABLE_LOGIN,
+                remoteConfigData.enable_login
+            )
+        }
+    }
+
+    override fun getremoteConfig(): Flow<RemoteConfigData> {
+        return flow {
+            val currentVersion =
+                preferenceHelper.getPref(
+                    SharedConstants.PrefUtil_CURRENT_VERSION_CODE,
+                    BuildConfig.VERSION_CODE
+                )
+            val enable_login = preferenceHelper.getPref(SharedConstants.PrefUtil_ENABLE_LOGIN, true)
+            emit(RemoteConfigData(enable_login ?: true, currentVersion ?: BuildConfig.VERSION_CODE))
         }
     }
 

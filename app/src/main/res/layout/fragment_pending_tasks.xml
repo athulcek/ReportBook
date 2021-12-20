@@ -11,14 +11,40 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPendingTasks"
+        <com.ouvrirdeveloper.core.ui.AppTextInputLayout
+            android:id="@+id/edtSearchLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_margin_24"
+            android:layout_marginTop="@dimen/margin_10"
+            app:endIconMode="clear_text"
+            app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_search">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="username"
+                android:imeOptions="actionSearch"
+                android:hint="@string/search_doc_number"
+                android:inputType="text"
+                android:maxLength="200" />
+        </com.ouvrirdeveloper.core.ui.AppTextInputLayout>
+
+
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/rvPendingTasks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/common_margin_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtSearchLayout"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

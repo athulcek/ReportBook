@@ -23,6 +23,9 @@ class SettingsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btn.setOnClickListener {
+
+        }
         binding.switchDayNight.setOnClickListener {
             val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
             when (isNightTheme) {

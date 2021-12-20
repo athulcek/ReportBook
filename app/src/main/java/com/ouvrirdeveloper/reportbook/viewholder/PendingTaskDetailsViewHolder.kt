@@ -36,12 +36,12 @@ class PendingTaskDetailsViewHolder(
     fun bind(item: BaseRecyclerStateItem) {
         if (item is PendingTaskDetailItem) {
             binding.task = item.pendingTask
-            binding.btnapprove.setOnClickListener {
+            binding.btnAction.setOnClickListener {
                 approve.invoke(item.pendingTask)
             }
-            binding.btnview.setOnClickListener {
+           /* binding.btnview.setOnClickListener {
                 viewDocument.invoke(item.pendingTask)
-            }
+            }*/
         }
 
 

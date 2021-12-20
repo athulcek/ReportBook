@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import kotlin.properties.ReadOnlyProperty
 
 abstract class BaseFragmentWithBinding<T : ViewDataBinding>(@LayoutRes private val layoutRes: Int) :
     BaseFragment() {

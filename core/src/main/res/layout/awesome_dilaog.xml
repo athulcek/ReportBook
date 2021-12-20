@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:paddingBottom="@dimen/single_margin">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/single_margin"
         android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/single_margin"
         android:background="@drawable/layout_rounded_white"
-        android:padding="@dimen/single_and_half_margin">
+        android:padding="@dimen/single_and_half_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
@@ -27,6 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_congrts" />
+
 
         <TextView
             android:id="@+id/title"
@@ -58,13 +65,13 @@
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
-            android:id="@+id/yesButton"
+            android:id="@+id/actionButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/triple_margin"
             android:layout_marginStart="@dimen/double_margin"
             android:layout_marginTop="@dimen/single_and_half_margin"
             android:layout_marginEnd="@dimen/double_margin"
-            android:background="@drawable/layout_rounded_dark_black"
+            android:background="@drawable/btn_press_state"
             android:gravity="center_vertical|center_horizontal"
             android:paddingStart="@dimen/single_margin"
             android:paddingEnd="@dimen/single_margin"
@@ -77,6 +84,25 @@
             app:layout_constraintTop_toBottomOf="@id/subHeading" />
 
         <TextView
+            android:id="@+id/yesButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/triple_margin"
+            android:layout_marginStart="@dimen/double_margin"
+            android:layout_marginTop="@dimen/half_margin"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:background="@drawable/btn_press_state"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingStart="@dimen/single_margin"
+            android:paddingEnd="@dimen/single_margin"
+            android:text="@string/done"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionButton" />
+
+        <TextView
             android:id="@+id/noButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/triple_margin"
@@ -84,7 +110,7 @@
             android:layout_marginTop="@dimen/half_margin"
             android:layout_marginEnd="@dimen/double_margin"
             android:layout_marginBottom="@dimen/single_margin"
-            android:background="@drawable/layout_rounded_dark_black"
+            android:background="@drawable/btn_press_state"
             android:gravity="center_vertical|center_horizontal"
             android:paddingStart="@dimen/single_margin"
             android:paddingEnd="@dimen/single_margin"
@@ -97,4 +123,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/yesButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </RelativeLayout>

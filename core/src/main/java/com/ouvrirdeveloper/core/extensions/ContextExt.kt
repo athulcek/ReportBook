@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.DialogCompat
 import com.google.android.material.snackbar.Snackbar
 import com.ouvrirdeveloper.core.R
 import com.ouvrirdeveloper.core.extensions.setNegativeButton
@@ -23,6 +22,7 @@ fun Context.showAlertDialog(
     onDismiss: (() -> Unit)? = null
 ): AlertDialog {
     val builder = AlertDialog.Builder(this).apply {
+        setTheme(R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog)
         setMessage(message)
         setTitle(getString(R.string.app_name))
         setPositiveButton(

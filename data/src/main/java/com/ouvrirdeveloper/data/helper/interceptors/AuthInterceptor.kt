@@ -15,7 +15,7 @@ class AuthInterceptor(private val preferenceHelper: PreferenceHelper) : Intercep
         }
         requestBuilder.addHeader(
             Constants.APP_VERSION,
-            BuildConfig.VERSION_CODE
+            BuildConfig.VERSION_CODE.toString()
         )
         return chain.proceed(requestBuilder.build())
     }

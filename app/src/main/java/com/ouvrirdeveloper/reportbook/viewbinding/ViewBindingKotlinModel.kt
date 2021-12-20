@@ -40,6 +40,8 @@ abstract class ViewBindingKotlinModel<T : ViewBinding>(
     }
 
     override fun getDefaultLayout() = layoutRes
+
+
 }
 
 // Static cache of a method pointer for each type of item used.

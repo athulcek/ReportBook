@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_2"
+        android:layout_marginVertical="@dimen/margin_8"
+        app:cardBackgroundColor="@color/primaryColor"
+        app:cardElevation="@dimen/dp_5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/margin_10">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glVerticalLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".01" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glVerticalRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".99" />
+
+
+            <TextView
+                android:id="@+id/tvText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginVertical="@dimen/margin_8"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingVertical="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintBottom_toTopOf="@+id/tvText2"
+                app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+                app:layout_constraintHeight_default="spread"
+                app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/black_800"
+                app:strokeWidth="2dp"
+                tools:text="Text1" />
+
+            <TextView
+                android:id="@+id/tvText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:lines="1"
+                android:textSize="@dimen/sp_8"
+                app:layout_constraintBottom_toTopOf="@+id/tvText3"
+                app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+                app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvText1"
+                tools:text="Text2" />
+
+
+            <TextView
+                android:id="@+id/tvText3"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginVertical="@dimen/dp_3"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:textSize="@dimen/sp_16"
+                app:cornerRadius="@dimen/dp_5"
+                app:layout_constraintBottom_toTopOf="@+id/tvText4"
+                app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+                app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvText2"
+                tools:text="Text3" />
+
+            <TextView
+                android:id="@+id/tvText4"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginVertical="@dimen/dp_3"
+                android:gravity="center"
+                android:textSize="@dimen/sp_16"
+                app:cornerRadius="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/glVerticalRight"
+                app:layout_constraintStart_toStartOf="@+id/glVerticalLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvText3"
+                tools:text="Text4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>APP_ENABLE_LOGIN</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>CURRENT_APP_VERSION_NAME</key>
+        <value></value>
+    </entry>
+
+</defaultsMap>

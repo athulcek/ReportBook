@@ -62,11 +62,21 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION}"
 
 
-    const val NAVIGATION = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
-    const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+    const val FRAGMENT_RUNTIME = "androidx.fragment:fragment:${Versions.ANDROIDX_FRAGMENT}"
+    const val FRAGMENT_RUNTIME_KTX = "androidx.fragment:fragment-ktx:${Versions.ANDROIDX_FRAGMENT}"
+    const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH_LAYOUT}"
+
+
+    const val NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime:${Versions.NAVIGATION}"
+    const val NAVIGATION_RUNTIME_KTX = "androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}"
+    const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment:${Versions.NAVIGATION}"
+    const val NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+    const val NAVIGATION_UI = "androidx.navigation:navigation-ui:${Versions.NAVIGATION}"
+    const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+
+
     const val VIEW_PAGER = "androidx.viewpager2:viewpager2:${Versions.VIEW_PAGER}"
     const val ANDROIDX_ACTIVITY = "androidx.activity:activity:${Versions.ANDROIDX_ACTIVITY}"
-    const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment:${Versions.ANDROIDX_FRAGMENT}"
 
 
     const val LOCATION = "com.google.android.gms:play-services-location:${Versions.LOCATION}"
@@ -81,6 +91,10 @@ object Deps {
 
     // Import the BoM for the Firebase platform
     const val FIREBASE_BOM = "com.google.firebase:firebase-bom:${Versions.FIREBASE_BOM}"
+    const val FIREBASE_CONFIG_KTX = "com.google.firebase:firebase-config-ktx:${Versions.FIREBASE_CONFIG_KTX}"
+//    const val FIREBASE_ANALYTICS_KTX = "com.google.firebase:firebase-analytics-ktx:${Versions.FIREBASE_BOM}"
+
+
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -130,7 +144,11 @@ object Deps {
 
 
     const val COMPOSE_UI = "androidx.compose.ui:ui:${Versions.COMPOSE}"
-    const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE}"
+
+
+    const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE_RUNTIME}"
+    const val COMPOSE_RUNTIME_LIVEDATA =
+        "androidx.compose.runtime:runtime-livedata:${Versions.COMPOSE_RUNTIME}"
 
     // Tooling support (Previews, etc.)
     const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
@@ -160,6 +178,9 @@ object Deps {
 
     // UI Tests androidTestImplementation
     const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:${Versions.COMPOSE}"
+
+
+    const val SHOULDSET = "com.github.MontiniCristian:ShouldSet:${Versions.SHOULDSET}"
 
 
 }

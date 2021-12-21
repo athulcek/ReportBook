@@ -19,11 +19,7 @@
         tools:ignore="AllowBackup"
         tools:node="merge"
         tools:replace="android:label">
-        <activity
-            android:name="com.ouvrirdeveloper.reportbook.features.compose.home.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MyApp.NoActionBar" />
+
         <activity
             android:name="com.ouvrirdeveloper.reportbook.features.splash.SplashScreenActivity"
             android:exported="true"
@@ -44,7 +40,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.home.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleInstance"
+            android:screenOrientation="sensorPortrait" />
 
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"

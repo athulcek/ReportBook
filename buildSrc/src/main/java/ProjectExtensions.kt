@@ -56,6 +56,13 @@ fun Project.addCrashlytics() {
         add("implementation", Deps.ANALYTICS_KTX)
     }
 }
+fun Project.addRemoteConfig() {
+    dependencies {
+        add("implementation", Deps.FIREBASE_BOM)
+        add("implementation", Deps.FIREBASE_CONFIG_KTX)
+
+    }
+}
 
 fun Project.addKotlin() {
     dependencies {
@@ -71,11 +78,14 @@ fun Project.addAndroid() {
     dependencies {
         add("implementation", Deps.ANDROIDX_CORE_KTX)
         add("implementation", Deps.ANDROIDX_APP_COMPAT)
-        add("implementation", Deps.ANDROIDX_FRAGMENT)
         add("implementation", Deps.ANDROIDX_LIFE_CYCLE_KTX)
         add("implementation", Deps.VIEW_MODEL_LIFE_CYCLE)
         add("implementation", Deps.ANDROIDX_CONSTRAINT_LAYOUT)
         add("implementation", Deps.VIEW_PAGER)
+        add("implementation", Deps.SWIPE_REFRESH_LAYOUT)
+        //add("implementation", Deps.ABOUTLIBRARIES)
+        //add("implementation", Deps.ABOUTLIBRARIES_LEGACY)
+//        add("implementation", Deps.SHOULDSET)
         //  add("implementation", Deps.KOIN_VIEWMODEL)
     }
     addNavigation()
@@ -100,7 +110,8 @@ fun Project.addPaging() {
 
 fun Project.addFragment() {
     dependencies {
-        add("implementation", Deps.FRAGMENT)
+        add("implementation", Deps.FRAGMENT_RUNTIME)
+        add("implementation", Deps.FRAGMENT_RUNTIME_KTX)
     }
 }
 
@@ -112,7 +123,12 @@ fun Project.addActivity() {
 
 fun Project.addNavigation() {
     dependencies {
-        add("implementation", Deps.NAVIGATION)
+        add("implementation", Deps.NAVIGATION_RUNTIME)
+        add("implementation", Deps.NAVIGATION_RUNTIME_KTX)
+        add("implementation", Deps.NAVIGATION_FRAGMENT)
+        add("implementation", Deps.NAVIGATION_FRAGMENT_KTX)
+        add("implementation", Deps.NAVIGATION_UI)
+        add("implementation", Deps.NAVIGATION_UI_KTX)
     }
 }
 
@@ -175,17 +191,17 @@ fun Project.addEpoxyRecyclerView() {
 
 fun Project.addCompose() {
     dependencies {
-       // add("implementation", Deps.COMPOSE_RUNTIME)
-        //add("implementation", Deps.COMPOSE_UI)
-//        add("implementation", Deps.COMPOSE_ANIMATION)
-       // add("implementation", Deps.COMPOSE_TOOLING)
-//        add("implementation", Deps.COMPOSE_FOUNDATION)
-//        add("implementation", Deps.COMPOSE_MATERIAL)
-//        add("implementation", Deps.COMPOSE_ICONS)
-//        add("implementation", Deps.COMPOSE_ICONS_EXTENTED)
-//        add("implementation", Deps.COMPOSE_ACTIVITY)
-//        add("implementation", Deps.COMPOSE_VIEWMODEL)
-//        add("implementation", Deps.COMPOSE_LIVEDATA)
-//        add("androidTestImplementation", Deps.COMPOSE_JUNIT)
+        //add("implementation", Deps.COMPOSE_RUNTIME)
+        add("implementation", Deps.COMPOSE_UI)
+        add("implementation", Deps.COMPOSE_ANIMATION)
+        add("implementation", Deps.COMPOSE_TOOLING)
+        add("implementation", Deps.COMPOSE_FOUNDATION)
+        add("implementation", Deps.COMPOSE_MATERIAL)
+        add("implementation", Deps.COMPOSE_ICONS)
+        add("implementation", Deps.COMPOSE_ICONS_EXTENTED)
+        add("implementation", Deps.COMPOSE_ACTIVITY)
+        add("implementation", Deps.COMPOSE_VIEWMODEL)
+        add("implementation", Deps.COMPOSE_LIVEDATA)
+        add("androidTestImplementation", Deps.COMPOSE_JUNIT)
     }
 }

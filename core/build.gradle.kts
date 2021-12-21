@@ -4,7 +4,6 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.modulePlugin)
 }
-addCompose()
 addMoshi()
 addKoin()
 addCoil()

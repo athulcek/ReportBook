@@ -1,5 +1,6 @@
-plugins {
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
     id(Plugins.application)
     id(Plugins.kotlinKapt)
     id(Plugins.kotlinAndroid)
@@ -7,9 +8,31 @@ plugins {
     id(Plugins.gmsGoogleServices)
     id(Plugins.firebaseCrashlytics)
     id(Plugins.modulePlugin)
+   // id(Plugins.aboutlibraries) version Versions.ABOUTLIBRARIES
 }
 
-addCompose()
+kapt {
+    generateStubs =true
+    correctErrorTypes = true
+}
+android {
+    defaultConfig {
+        applicationId = AppConfig.applicationId
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    kapt {
+        generateStubs =true
+        correctErrorTypes = true
+    }
+    /* composeOptions {
+         kotlinCompilerExtensionVersion = Versions.COMPOSE
+     }*/
+}
+
+//addCompose()
 addKoin()
 addKotlin()
 addAndroid()
@@ -22,3 +45,5 @@ addData()
 addLottie()
 addEpoxyRecyclerView()
 addCrashlytics()
+addRemoteConfig()
+

@@ -12,7 +12,6 @@ import com.android.build.gradle.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.withType
 import java.io.File
 
 class CommonModulePlugin : Plugin<Project> {
@@ -28,21 +27,25 @@ class CommonModulePlugin : Plugin<Project> {
                 buildToolsVersion(AppConfig.buildTool)
 
                 compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_1_8
-                    targetCompatibility = JavaVersion.VERSION_1_8
+                    sourceCompatibility = JavaVersion.VERSION_11
+                    targetCompatibility = JavaVersion.VERSION_11
                 }
 
-                project.tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-                   kotlinOptions{
-                       jvmTarget = JavaVersion.VERSION_1_8.toString()
-                   }
-                }
+                /* val compileKotlin: KotlinCompile by project.tasks
+                 compileKotlin.kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()*/
+                /* project.tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+                     kotlinOptions {
+                         jvmTarget = JavaVersion.VERSION_11.toString()
+                         useIR = true
+                     }
+                 }*/
                 testOptions {
                     unitTests.isReturnDefaultValues = true
                 }
                 packagingOptions {
                     excludes.add("META-INF/DEPENDENCIES")
                     excludes.add("META-INF/*.kotlin_module")
+                    excludes.add("META-INF/{AL2.0,LGPL2.1}")
                     resources.excludes += "DebugProbesKt.bin"
                 }
 
@@ -53,22 +56,24 @@ class CommonModulePlugin : Plugin<Project> {
                     versionName = AppConfig.versionName
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                     multiDexEnabled = AppConfig.multiDexEnabled
-                    buildConfigField("Double", "appVersionName", AppConfig.versionName)
+                    vectorDrawables {
+                        useSupportLibrary = true
+                    }
+                    buildConfigField("String", "VERSION_NAME", "\"${AppConfig.versionName}\"")
                     buildConfigField(
-                        "String",
+                        "int",
                         BuildConfigFields.VERSION_CODE,
-                        "\"${AppConfig.versionCode}\""
+                        "${AppConfig.versionCode}"
                     )
                 }
 
+
                 viewBinding.isEnabled = true
                 dataBinding.isEnabled = true
-               /*
-                 buildFeatures.compose = true
+                /* buildFeatures.compose = true
                 composeOptions {
                     kotlinCompilerExtensionVersion = Versions.COMPOSE
-                    //useLiveLiterals =true
-                    kotlinCompilerVersion = Versions.KOTLIN
+                    useLiveLiterals =true
                 }*/
                 when (this) {
                     is LibraryExtension -> {
@@ -138,6 +143,7 @@ class CommonModulePlugin : Plugin<Project> {
                                 }
                                 isMinifyEnabled = false
                                 isShrinkResources = false
+                                isDebuggable = true
                                 manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
                             }
                             flavorDimensions(BuildProductDimensions.Environment)

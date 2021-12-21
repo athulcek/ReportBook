@@ -7,7 +7,7 @@ object Versions {
 
 
     const val MANES_GRADLE_VERSION = "0.39.0"
-    const val NAVIGATION = "2.3.5"
+    const val NAVIGATION = "2.4.0-beta02"
     const val CRASHLYTICS_GRADLE = "2.6.1"
     const val SERIALIZATION = "1.6.0-M1"
 
@@ -34,10 +34,11 @@ object Versions {
 
     const val KOTLIN_CORE = "1.5.2"
     const val ANDROIDX_ACTIVITY = "1.2.3"
-    const val ANDROIDX_FRAGMENT = "1.3.4"
+    const val ANDROIDX_FRAGMENT = "1.4.0"
     const val KOTLIN_SERIALIZATION = "1.3.0"
     const val KOIN = "3.1.2"
     const val COIL = "1.4.0"
+    const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 
     const val ROOM = "2.3.0"
     const val PREFERENCE = "1.1.1"
@@ -60,7 +61,8 @@ object Versions {
     const val LOCATION = "18.0.0"
     const val PLAY_SERVICE_AUTH = "19.0.0"
     const val PLAY_SERVICE_AUTH_PHONE = "17.5.1"
-    const val FIREBASE_BOM = "29.0.0"
+    const val FIREBASE_BOM = "29.0.1"
+    const val FIREBASE_CONFIG_KTX = "21.0.1"
     const val PAGING = "2.1.2"
 
 
@@ -82,7 +84,9 @@ object Versions {
     const val LOTTIE = "4.2.0"
     const val EPOXY = "4.6.4"
     const val COMPOSE = "1.0.5"
+    const val COMPOSE_RUNTIME = "1.0.5"
     const val COMPOSE_ACTIVITY = "1.3.1"
     const val COMPOSE_VIEWMODEL = "1.0.0-alpha07"
+    const val SHOULDSET = "v0.1.1"
 
 }
